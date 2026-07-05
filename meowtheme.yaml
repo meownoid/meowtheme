@@ -1,0 +1,21 @@
+system: "base16"
+name: "meow-dark"
+author: "meownoid"
+variant: "dark"
+palette:
+  base00: "#0F0E12" # (255deg 12% 6%)
+  base01: "#1A191D" # (255deg 7% 11%)
+  base02: "#252428" # (255deg 5% 15%)
+  base03: "#484850" # (240deg 5% 30%)
+  base04: "#B2B2B2" # (180deg 0% 70%)
+  base05: "#D1D3D4" # (200deg 3% 83%)
+  base06: "#E5E5E5" # (180deg 0% 90%)
+  base07: "#F1F2F2" # (180deg 4% 95%)
+  base08: "#CA003D" # red
+  base09: "#E55022" # orange
+  base0A: "#FBB410" # yellow
+  base0B: "#008556" # green
+  base0C: "#00ADE3" # cyan
+  base0D: "#238DC1" # blue
+  base0E: "#A256B3" # purple
+  base0F: "#8A673B" # brown
