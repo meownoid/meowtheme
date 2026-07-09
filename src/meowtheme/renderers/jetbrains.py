@@ -84,6 +84,7 @@ def render_jetbrains(palette: Base16Palette, product: str) -> str:
     parent_scheme = "Default" if palette.appearance == "light" else "Darcula"
     options: Mapping[str, str] = {
         **jetbrains_terminal_color_options(colors),
+        **jetbrains_vcs_color_options(colors),
         "CARET_COLOR": colors.text_accent,
         "CARET_ROW_COLOR": colors.editor_highlighted_line_background,
         "CONSOLE_BACKGROUND_KEY": colors.terminal.background,
@@ -98,6 +99,7 @@ def render_jetbrains(palette: Base16Palette, product: str) -> str:
         "SELECTION_FOREGROUND": colors.terminal.bright_foreground,
     }
     attributes: Mapping[str, Mapping[str, str]] = {
+        **jetbrains_diff_attributes(colors),
         **jetbrains_terminal_attributes(colors),
         **jetbrains_syntax_attributes(colors),
         "TEXT": {
@@ -130,6 +132,31 @@ def jetbrains_terminal_color_options(colors: EditorColors) -> Mapping[str, str]:
     return {
         "BLOCK_TERMINAL_DEFAULT_BACKGROUND": colors.terminal.background,
         "BLOCK_TERMINAL_DEFAULT_FOREGROUND": colors.terminal.foreground,
+    }
+
+
+def jetbrains_vcs_color_options(colors: EditorColors) -> Mapping[str, str]:
+    return {
+        "ADDED_LINES_COLOR": colors.created.foreground,
+        "DELETED_LINES_COLOR": colors.deleted.foreground,
+        "FILESTATUS_ADDED": colors.created.foreground,
+        "FILESTATUS_DELETED": colors.deleted.foreground,
+        "FILESTATUS_MODIFIED": colors.modified.foreground,
+        "MODIFIED_LINES_COLOR": colors.diff_modified_background,
+    }
+
+
+def jetbrains_diff_attributes(colors: EditorColors) -> Mapping[str, Mapping[str, str]]:
+    return {
+        "DIFF_DELETED": {
+            "BACKGROUND": colors.diff_removed_background,
+        },
+        "DIFF_INSERTED": {
+            "BACKGROUND": colors.diff_added_background,
+        },
+        "DIFF_MODIFIED": {
+            "BACKGROUND": colors.diff_modified_background,
+        },
     }
 
 
@@ -184,11 +211,15 @@ def jetbrains_terminal_attributes(colors: EditorColors) -> Mapping[str, Mapping[
 def jetbrains_ui_colors(colors: EditorColors) -> Mapping[str, str]:
     return {
         "*.background": colors.surface_background,
+        "*.disabledForeground": colors.text_muted,
+        "*.disabledText": colors.text_muted,
+        "*.inactiveForeground": colors.text_muted,
         "Button.background": colors.element_background,
         "Button.default.focusedBorderColor": colors.border_focused,
         "Button.focusedBorderColor": colors.border_focused,
         "Button.foreground": colors.text,
         "CheckBox.foreground": colors.text,
+        "ComboBox.disabledForeground": colors.text_muted,
         "Component.borderColor": colors.border,
         "Component.disabledBorderColor": colors.border_variant,
         "Component.focusColor": colors.border_focused,
@@ -206,7 +237,7 @@ def jetbrains_ui_colors(colors: EditorColors) -> Mapping[str, str]:
         "EditorTabs.selectedForeground": colors.text,
         "EditorTabs.underlineColor": colors.border_selected,
         "EditorTabs.underlinedTabBackground": colors.tab_active_background,
-        "Label.disabledForeground": colors.text_disabled,
+        "Label.disabledForeground": colors.text_muted,
         "Label.foreground": colors.text,
         "List.background": colors.panel_background,
         "List.foreground": colors.text,
@@ -242,6 +273,7 @@ def jetbrains_ui_colors(colors: EditorColors) -> Mapping[str, str]:
         "Table.selectionInactiveBackground": colors.element_selected,
         "Table.selectionInactiveForeground": colors.text,
         "TextField.background": colors.background,
+        "TextField.disabledForeground": colors.text_muted,
         "TextField.foreground": colors.text,
         "TitlePane.background": colors.title_bar_background,
         "TitlePane.inactiveBackground": colors.title_bar_inactive_background,

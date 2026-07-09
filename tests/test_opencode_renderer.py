@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 import unittest
 
 from meowtheme.renderers import artifact_set
@@ -8,7 +9,95 @@ from meowtheme.renderers import artifact_set
 from tests.helpers import palette
 
 
+OPENCODE_THEME_KEYS = {
+    "primary",
+    "secondary",
+    "accent",
+    "error",
+    "warning",
+    "success",
+    "info",
+    "text",
+    "textMuted",
+    "background",
+    "backgroundPanel",
+    "backgroundElement",
+    "border",
+    "borderActive",
+    "borderSubtle",
+    "diffAdded",
+    "diffRemoved",
+    "diffContext",
+    "diffHunkHeader",
+    "diffHighlightAdded",
+    "diffHighlightRemoved",
+    "diffAddedBg",
+    "diffRemovedBg",
+    "diffContextBg",
+    "diffLineNumber",
+    "diffAddedLineNumberBg",
+    "diffRemovedLineNumberBg",
+    "markdownText",
+    "markdownHeading",
+    "markdownLink",
+    "markdownLinkText",
+    "markdownCode",
+    "markdownBlockQuote",
+    "markdownEmph",
+    "markdownStrong",
+    "markdownHorizontalRule",
+    "markdownListItem",
+    "markdownListEnumeration",
+    "markdownImage",
+    "markdownImageText",
+    "markdownCodeBlock",
+    "syntaxComment",
+    "syntaxKeyword",
+    "syntaxFunction",
+    "syntaxVariable",
+    "syntaxString",
+    "syntaxNumber",
+    "syntaxType",
+    "syntaxOperator",
+    "syntaxPunctuation",
+}
+
+HEX_COLOR_PATTERN = re.compile(r"^#[0-9a-fA-F]{6}$")
+REFERENCE_PATTERN = re.compile(r"^[a-zA-Z][a-zA-Z0-9_]*$")
+
+
+def is_opencode_color_value(value: object) -> bool:
+    if isinstance(value, int):
+        return 0 <= value <= 255
+    if isinstance(value, str):
+        return (
+            value == "none"
+            or bool(HEX_COLOR_PATTERN.fullmatch(value))
+            or bool(REFERENCE_PATTERN.fullmatch(value))
+        )
+    if isinstance(value, dict):
+        return set(value) == {"dark", "light"} and all(
+            is_opencode_color_value(mode_value) for mode_value in value.values()
+        )
+    return False
+
+
 class OpencodeRendererTest(unittest.TestCase):
+    def test_renders_schema_supported_theme_keys_and_color_values(self) -> None:
+        body = artifact_set(palette())["opencode/meowdark.json"]
+        payload = json.loads(body)
+        theme = payload["theme"]
+
+        invalid_keys = sorted(set(theme) - OPENCODE_THEME_KEYS)
+        invalid_values = {
+            key: value for key, value in theme.items() if not is_opencode_color_value(value)
+        }
+
+        self.assertEqual(
+            {"invalid_keys": invalid_keys, "invalid_values": invalid_values},
+            {"invalid_keys": [], "invalid_values": {}},
+        )
+
     def test_renders_theme_schema_and_core_colors(self) -> None:
         body = artifact_set(palette())["opencode/meowdark.json"]
         payload = json.loads(body)
@@ -28,11 +117,9 @@ class OpencodeRendererTest(unittest.TestCase):
         self.assertEqual(theme["background"], "#121212")
         self.assertEqual(theme["backgroundPanel"], "#1c1c1c")
         self.assertEqual(theme["backgroundElement"], "#303030")
-        self.assertEqual(theme["backgroundMenu"], "#303030")
         self.assertEqual(theme["border"], "#686868")
         self.assertEqual(theme["borderActive"], "#82aaff")
         self.assertEqual(theme["borderSubtle"], "#303030")
-        self.assertEqual(theme["selectedListItemText"], "#121212")
 
     def test_renders_diff_markdown_and_syntax_colors(self) -> None:
         body = artifact_set(palette())["opencode/meowdark.json"]
@@ -42,9 +129,11 @@ class OpencodeRendererTest(unittest.TestCase):
         self.assertEqual(theme["diffRemoved"], "#f07178")
         self.assertEqual(theme["diffContext"], "#8a8a8a")
         self.assertEqual(theme["diffHunkHeader"], "#82aaff")
-        self.assertEqual(theme["diffAddedBg"], "#c3e88d24")
-        self.assertEqual(theme["diffRemovedBg"], "#f0717824")
+        self.assertEqual(theme["diffAddedBg"], "#303627")
+        self.assertEqual(theme["diffRemovedBg"], "#382223")
         self.assertEqual(theme["diffContextBg"], "#1c1c1c")
+        self.assertEqual(theme["diffAddedLineNumberBg"], "#3b432e")
+        self.assertEqual(theme["diffRemovedLineNumberBg"], "#452829")
         self.assertEqual(theme["markdownHeading"], "#82aaff")
         self.assertEqual(theme["markdownLink"], "#89ddff")
         self.assertEqual(theme["markdownCode"], "#c3e88d")

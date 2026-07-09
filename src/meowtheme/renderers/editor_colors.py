@@ -6,6 +6,13 @@ from meowtheme.base16 import Base16Palette
 from meowtheme.renderers.common import semantic_tokens
 
 
+DIFF_BACKGROUND_ALPHA = 0.17
+DIFF_LINE_NUMBER_BACKGROUND_ALPHA = 0.23
+
+SELECTION_ALPHA = 0.17
+SECONDARY_SELECTION_ALPHA = 0.11
+
+
 @dataclass(frozen=True)
 class EditorSyntaxColors:
     attribute: str
@@ -74,6 +81,11 @@ class EditorColors:
     created: EditorStatusColors
     debug_breakpoint: str
     deleted: EditorStatusColors
+    diff_added_background: str
+    diff_added_line_number_background: str
+    diff_modified_background: str
+    diff_removed_background: str
+    diff_removed_line_number_background: str
     editor_active_line_background: str
     editor_active_line_number: str
     editor_active_wrap_guide: str
@@ -150,10 +162,43 @@ class EditorColors:
     conflict: EditorStatusColors
 
 
+def alpha_hex(color: str, alpha: float) -> str:
+    alpha_channel = round(alpha * 255)
+    return f"{color}{alpha_channel:02x}"
+
+
+def blend_hex(foreground: str, background: str, alpha: float) -> str:
+    foreground_channels = (
+        int(foreground[1:3], 16),
+        int(foreground[3:5], 16),
+        int(foreground[5:7], 16),
+    )
+    background_channels = (
+        int(background[1:3], 16),
+        int(background[3:5], 16),
+        int(background[5:7], 16),
+    )
+    channels = (
+        round(foreground_channel * alpha + background_channel * (1 - alpha))
+        for foreground_channel, background_channel in zip(
+            foreground_channels, background_channels, strict=True
+        )
+    )
+    return "#" + "".join(f"{channel:02x}" for channel in channels)
+
+
+def status(foreground: str, background: str) -> EditorStatusColors:
+    return EditorStatusColors(
+        foreground=foreground,
+        background=background,
+        border=foreground,
+    )
+
+
 def editor_colors(palette: Base16Palette) -> EditorColors:
     tokens = semantic_tokens(palette)
-    selection = alpha_hex(tokens["blue"], 0.17)
-    secondary_selection = alpha_hex(tokens["blue"], 0.11)
+    selection = alpha_hex(tokens["blue"], SELECTION_ALPHA)
+    secondary_selection = alpha_hex(tokens["blue"], SECONDARY_SELECTION_ALPHA)
     ghost_background = alpha_hex(tokens["foreground"], 0.00)
     syntax_yellow = tokens["brown"] if palette.appearance == "light" else tokens["yellow"]
 
@@ -168,6 +213,21 @@ def editor_colors(palette: Base16Palette) -> EditorColors:
         created=status(tokens["green"], tokens["surface"]),
         debug_breakpoint=tokens["red"],
         deleted=status(tokens["red"], tokens["surface"]),
+        diff_added_background=blend_hex(
+            tokens["green"], tokens["background"], DIFF_BACKGROUND_ALPHA
+        ),
+        diff_added_line_number_background=blend_hex(
+            tokens["green"], tokens["background"], DIFF_LINE_NUMBER_BACKGROUND_ALPHA
+        ),
+        diff_modified_background=blend_hex(
+            tokens["blue"], tokens["background"], DIFF_BACKGROUND_ALPHA
+        ),
+        diff_removed_background=blend_hex(
+            tokens["red"], tokens["background"], DIFF_BACKGROUND_ALPHA
+        ),
+        diff_removed_line_number_background=blend_hex(
+            tokens["red"], tokens["background"], DIFF_LINE_NUMBER_BACKGROUND_ALPHA
+        ),
         editor_active_line_background=tokens["surface"],
         editor_active_line_number=tokens["foreground"],
         editor_active_wrap_guide=tokens["surfaceRaised"],
@@ -285,17 +345,4 @@ def editor_colors(palette: Base16Palette) -> EditorColors:
         title_bar_inactive_background=tokens["surface"],
         toolbar_background=tokens["background"],
         warning=status(tokens["yellow"], tokens["surface"]),
-    )
-
-
-def alpha_hex(color: str, alpha: float) -> str:
-    alpha_channel = round(alpha * 255)
-    return f"{color}{alpha_channel:02x}"
-
-
-def status(foreground: str, background: str) -> EditorStatusColors:
-    return EditorStatusColors(
-        foreground=foreground,
-        background=background,
-        border=foreground,
     )

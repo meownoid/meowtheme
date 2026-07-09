@@ -23,9 +23,13 @@ class MacOSTerminalRendererTest(unittest.TestCase):
     def test_renders_expected_color_archives(self) -> None:
         payload = plistlib.loads(render_macos_terminal(palette()).encode("utf-8"))
 
-        self.assertEqual(ns_rgb(payload["BackgroundColor"]), "0.07058823529 0.07058823529 0.07058823529")
+        self.assertEqual(
+            ns_rgb(payload["BackgroundColor"]), "0.07058823529 0.07058823529 0.07058823529"
+        )
         self.assertEqual(ns_rgb(payload["TextColor"]), "0.8156862745 0.8156862745 0.8156862745")
-        self.assertEqual(ns_rgb(payload["ANSIGreenColor"]), "0.7647058824 0.9098039216 0.5529411765")
+        self.assertEqual(
+            ns_rgb(payload["ANSIGreenColor"]), "0.7647058824 0.9098039216 0.5529411765"
+        )
         self.assertEqual(ns_rgb(payload["ANSIBlueColor"]), "0.5098039216 0.6666666667 1")
 
 

@@ -2,15 +2,21 @@
 <!-- Generated for JetBrains IDEs from Base16 by meowtheme. -->
 <scheme name="meow-light" version="142" parent_scheme="Default">
   <colors>
+    <option name="ADDED_LINES_COLOR" value="008556" />
     <option name="BLOCK_TERMINAL_DEFAULT_BACKGROUND" value="f1f2f2" />
     <option name="BLOCK_TERMINAL_DEFAULT_FOREGROUND" value="252428" />
     <option name="CARET_COLOR" value="238dc1" />
     <option name="CARET_ROW_COLOR" value="e5e5e5" />
     <option name="CONSOLE_BACKGROUND_KEY" value="f1f2f2" />
+    <option name="DELETED_LINES_COLOR" value="ca003d" />
+    <option name="FILESTATUS_ADDED" value="008556" />
+    <option name="FILESTATUS_DELETED" value="ca003d" />
+    <option name="FILESTATUS_MODIFIED" value="238dc1" />
     <option name="GUTTER_BACKGROUND" value="f1f2f2" />
     <option name="INDENT_GUIDE" value="d1d3d4" />
     <option name="LINE_NUMBERS_COLOR" value="b2b2b2" />
     <option name="LINE_NUMBER_ON_CARET_ROW_COLOR" value="252428" />
+    <option name="MODIFIED_LINES_COLOR" value="cee1ea" />
     <option name="NOTIFICATION_BACKGROUND" value="e5e5e5" />
     <option name="READONLY_BACKGROUND" value="e5e5e5" />
     <option name="RIGHT_MARGIN_COLOR" value="d1d3d4" />
@@ -396,6 +402,21 @@
     <option name="DEFAULT_VALID_STRING_ESCAPE">
       <value>
         <option name="FOREGROUND" value="00ade3" />
+      </value>
+    </option>
+    <option name="DIFF_DELETED">
+      <value>
+        <option name="BACKGROUND" value="eac9d3" />
+      </value>
+    </option>
+    <option name="DIFF_INSERTED">
+      <value>
+        <option name="BACKGROUND" value="c8dfd7" />
+      </value>
+    </option>
+    <option name="DIFF_MODIFIED">
+      <value>
+        <option name="BACKGROUND" value="cee1ea" />
       </value>
     </option>
     <option name="PY.ANNOTATION">

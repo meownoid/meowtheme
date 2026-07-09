@@ -3,6 +3,9 @@ highlight clear
 if exists('syntax_on')
   syntax reset
 endif
+if has('termguicolors')
+  set termguicolors
+endif
 set background=light
 let g:colors_name = 'meow-light'
 
@@ -10,24 +13,48 @@ highlight Normal guifg=#252428 guibg=#f1f2f2
 highlight ColorColumn guibg=#d1d3d4
 highlight Conceal guifg=#b2b2b2
 highlight Cursor guifg=#f1f2f2 guibg=#238dc1
+highlight CursorColumn guibg=#e5e5e5
 highlight CursorLine guibg=#e5e5e5
+highlight CursorLineFold guifg=#252428 guibg=#f1f2f2
 highlight CursorLineNr guifg=#252428
+highlight CursorLineSign guibg=#f1f2f2
+highlight CurSearch guifg=#252428 guibg=#d1d3d4
 highlight Directory guifg=#238dc1
 highlight Error guifg=#ca003d guibg=#e5e5e5
 highlight FoldColumn guifg=#b2b2b2 guibg=#f1f2f2
 highlight Folded guifg=#484850 guibg=#e5e5e5
+highlight IncSearch guifg=#252428 guibg=#d1d3d4
 highlight LineNr guifg=#b2b2b2
+highlight LineNrAbove guifg=#b2b2b2
+highlight LineNrBelow guifg=#b2b2b2
 highlight MatchParen guifg=#252428 guibg=#d1d3d4
 highlight NonText guifg=#b2b2b2
 highlight Pmenu guifg=#252428 guibg=#e5e5e5
+highlight PmenuBorder guifg=#d1d3d4 guibg=#e5e5e5
+highlight PmenuExtra guifg=#484850 guibg=#e5e5e5
+highlight PmenuExtraSel guifg=#252428 guibg=#d1d3d4
+highlight PmenuKind guifg=#8a673b guibg=#e5e5e5
+highlight PmenuKindSel guifg=#8a673b guibg=#d1d3d4
+highlight PmenuMatch guifg=#238dc1 guibg=#e5e5e5
+highlight PmenuMatchSel guifg=#238dc1 guibg=#d1d3d4
+highlight PmenuSbar guibg=#f1f2f2
 highlight PmenuSel guifg=#252428 guibg=#d1d3d4
+highlight PmenuThumb guibg=#b2b2b2
+highlight Question guifg=#238dc1
+highlight QuickFixLine guifg=#252428 guibg=#e5e5e5
 highlight Search guifg=#252428 guibg=#d1d3d4
 highlight SignColumn guibg=#f1f2f2
+highlight SpecialKey guifg=#b2b2b2
+highlight SpellBad gui=undercurl guisp=#ca003d
+highlight SpellCap gui=undercurl guisp=#fbb410
+highlight SpellLocal gui=undercurl guisp=#238dc1
+highlight SpellRare gui=undercurl guisp=#00ade3
 highlight StatusLine guifg=#252428 guibg=#e5e5e5
 highlight StatusLineNC guifg=#484850 guibg=#e5e5e5
 highlight VertSplit guifg=#d1d3d4
 highlight Visual guibg=#d1d3d4
 highlight WarningMsg guifg=#fbb410
+highlight WinSeparator guifg=#d1d3d4
 highlight Comment guifg=#b2b2b2 gui=italic
 highlight Constant guifg=#e55022
 highlight String guifg=#008556
@@ -61,9 +88,48 @@ highlight SpecialComment guifg=#b2b2b2 gui=italic
 highlight Debug guifg=#ca003d
 highlight Underlined guifg=#238dc1 gui=underline
 highlight Ignore guifg=#b2b2b2
+highlight Title guifg=#238dc1 gui=bold
+highlight Bold guifg=#8a673b gui=bold
+highlight Italic guifg=#238dc1 gui=italic
+highlight BoldItalic guifg=#8a673b gui=bold,italic
 highlight ErrorMsg guifg=#ca003d
 highlight Todo guifg=#fbb410 guibg=#e5e5e5
+highlight Added guifg=#008556
+highlight Changed guifg=#238dc1
+highlight Removed guifg=#ca003d
 highlight DiffAdd guifg=#008556 guibg=#e5e5e5
 highlight DiffChange guifg=#238dc1 guibg=#e5e5e5
 highlight DiffDelete guifg=#ca003d guibg=#e5e5e5
 highlight DiffText guifg=#238dc1 guibg=#e5e5e5
+highlight markdownH1 guifg=#238dc1 gui=bold
+highlight markdownH2 guifg=#238dc1 gui=bold
+highlight markdownH3 guifg=#238dc1 gui=bold
+highlight markdownH4 guifg=#238dc1 gui=bold
+highlight markdownH5 guifg=#238dc1 gui=bold
+highlight markdownH6 guifg=#238dc1 gui=bold
+highlight markdownHeadingDelimiter guifg=#252428
+highlight markdownRule guifg=#00ade3
+highlight markdownListMarker guifg=#252428
+highlight markdownOrderedListMarker guifg=#252428
+highlight markdownBlockquote guifg=#b2b2b2 gui=italic
+highlight markdownLinkText guifg=#238dc1 gui=italic
+highlight markdownAutomaticLink guifg=#00ade3
+highlight markdownUrl guifg=#00ade3
+highlight markdownUrlTitle guifg=#008556
+highlight markdownCode guifg=#008556
+highlight markdownCodeBlock guifg=#008556
+highlight markdownItalic guifg=#238dc1 gui=italic
+highlight markdownBold guifg=#8a673b gui=bold
+highlight markdownBoldItalic guifg=#8a673b gui=bold,italic
+highlight markdownStrike guifg=#b2b2b2 gui=strikethrough
+highlight htmlH1 guifg=#238dc1 gui=bold
+highlight htmlH2 guifg=#238dc1 gui=bold
+highlight htmlH3 guifg=#238dc1 gui=bold
+highlight htmlH4 guifg=#238dc1 gui=bold
+highlight htmlH5 guifg=#238dc1 gui=bold
+highlight htmlH6 guifg=#238dc1 gui=bold
+highlight htmlLink guifg=#238dc1 gui=underline
+highlight htmlBold guifg=#8a673b gui=bold
+highlight htmlItalic guifg=#238dc1 gui=italic
+highlight htmlBoldItalic guifg=#8a673b gui=bold,italic
+highlight htmlStrike guifg=#b2b2b2 gui=strikethrough

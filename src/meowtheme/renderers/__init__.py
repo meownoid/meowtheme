@@ -3,6 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from meowtheme.base16 import Base16Palette
+from meowtheme.renderers.chrome import render_chrome
 from meowtheme.renderers.codex import render_codex
 from meowtheme.renderers.codex_desktop import render_codex_desktop
 from meowtheme.renderers.common import semantic_tokens
@@ -22,6 +23,7 @@ from meowtheme.renderers.zed import render_zed
 
 def artifact_set(palette: Base16Palette) -> dict[str, str]:
     artifacts = {
+        f"chrome/{palette.slug}/manifest.json": render_chrome(palette),
         f"codex-desktop/{palette.slug}.txt": render_codex_desktop(palette),
         f"codex/{palette.slug}.tmTheme": render_codex(palette),
         f"jetbrains/{palette.file_stem}.theme.json": render_jetbrains_theme(palette),
@@ -65,6 +67,7 @@ __all__ = [
     "artifact_set",
     "render_all",
     "render_all_schemes",
+    "render_chrome",
     "render_codex",
     "render_codex_desktop",
     "render_jetbrains",
