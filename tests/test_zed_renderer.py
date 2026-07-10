@@ -24,6 +24,8 @@ class ZedRendererTest(unittest.TestCase):
         self.assertEqual(style["background"], "#121212")
         self.assertEqual(style["editor.foreground"], "#d0d0d0")
         self.assertEqual(style["editor.background"], "#121212")
+        self.assertEqual(style["element.selected"], "#686868")
+        self.assertEqual(style["ghost_element.selected"], "#686868")
         self.assertEqual(style["players"][0]["selection"], "#82aaff2b")
         self.assertEqual(style["terminal.ansi.green"], "#c3e88d")
 

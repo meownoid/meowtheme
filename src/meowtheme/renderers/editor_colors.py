@@ -129,6 +129,7 @@ class EditorColors:
     panel_indent_guide: str
     panel_indent_guide_active: str
     panel_indent_guide_hover: str
+    panel_selected_background: str
     player_background: str
     player_cursor: str
     player_selection: str
@@ -271,6 +272,7 @@ def editor_colors(palette: Base16Palette) -> EditorColors:
         panel_indent_guide=tokens["surfaceRaised"],
         panel_indent_guide_active=tokens["muted"],
         panel_indent_guide_hover=tokens["muted"],
+        panel_selected_background=tokens["muted"],
         player_background=tokens["background"],
         player_cursor=tokens["mutedForeground"],
         player_selection=selection,

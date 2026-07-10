@@ -32,7 +32,7 @@ def render_macos_terminal(palette: Base16Palette) -> str:
         "CursorType": 0,
         "DisableANSIColor": False,
         "ProfileCurrentVersion": 2.09,
-        "SelectionColor": ns_color_archive(tokens["surfaceRaised"]),
+        "SelectionColor": ns_color_archive(tokens["muted"]),
         "ShowActiveProcessInTitle": True,
         "ShowCommandKeyInTitle": False,
         "ShowDimensionsInTitle": False,
