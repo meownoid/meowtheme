@@ -10,7 +10,8 @@ DIFF_BACKGROUND_ALPHA = 0.17
 DIFF_LINE_NUMBER_BACKGROUND_ALPHA = 0.23
 
 SELECTION_ALPHA = 0.17
-SECONDARY_SELECTION_ALPHA = 0.11
+SECONDARY_SELECTION_ALPHA = 0.23
+PLAYER_SELECTION_ALPHA = 0.23
 
 
 @dataclass(frozen=True)
@@ -275,7 +276,7 @@ def editor_colors(palette: Base16Palette) -> EditorColors:
         panel_selected_background=tokens["muted"],
         player_background=tokens["background"],
         player_cursor=tokens["mutedForeground"],
-        player_selection=selection,
+        player_selection=alpha_hex(tokens["blue"], PLAYER_SELECTION_ALPHA),
         renamed=status(tokens["purple"], tokens["surface"]),
         scrollbar_thumb_background=tokens["muted"],
         scrollbar_thumb_border=tokens["surfaceRaised"],

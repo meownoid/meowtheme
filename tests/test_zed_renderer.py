@@ -26,7 +26,9 @@ class ZedRendererTest(unittest.TestCase):
         self.assertEqual(style["editor.background"], "#121212")
         self.assertEqual(style["element.selected"], "#686868")
         self.assertEqual(style["ghost_element.selected"], "#686868")
-        self.assertEqual(style["players"][0]["selection"], "#82aaff2b")
+        self.assertEqual(style["players"][0]["selection"], "#82aaff3b")
+        self.assertEqual(style["editor.document_highlight.read_background"], "#82aaff3b")
+        self.assertEqual(style["editor.document_highlight.write_background"], "#82aaff3b")
         self.assertEqual(style["terminal.ansi.green"], "#c3e88d")
 
     def test_renders_syntax_colors(self) -> None:
