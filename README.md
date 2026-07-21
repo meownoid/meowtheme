@@ -4,7 +4,8 @@
   <img src="assets/theme.png" alt="meowtheme preview" width="660">
 </p>
 
-Light and dark `meow` theme for Zed, Vim, macOS Terminal, Codex, Codex Desktop, and opencode.
+Light and dark `meow` theme for Zed, Vim, Xcode, macOS Terminal, Codex, Codex Desktop, and
+opencode.
 
 ## Artifacts
 

@@ -10,6 +10,7 @@ from meowtheme.renderers.editor_colors import editor_colors
 from meowtheme.renderers.macos_terminal import render_macos_terminal
 from meowtheme.renderers.opencode import render_opencode
 from meowtheme.renderers.vim import render_vim
+from meowtheme.renderers.xcode import render_xcode
 from meowtheme.renderers.zed import render_zed
 
 
@@ -20,6 +21,7 @@ def artifact_set(palette: Base16Palette) -> dict[str, str]:
         f"macos-terminal/{palette.file_stem}.terminal": render_macos_terminal(palette),
         f"opencode/{palette.slug}.json": render_opencode(palette),
         f"vim/{palette.slug}.vim": render_vim(palette),
+        f"xcode/{palette.slug}.xccolortheme": render_xcode(palette),
         f"zed/{palette.slug}.json": render_zed(palette),
     }
     return artifacts
@@ -56,6 +58,7 @@ __all__ = [
     "render_macos_terminal",
     "render_opencode",
     "render_vim",
+    "render_xcode",
     "render_zed",
     "editor_colors",
     "semantic_tokens",
