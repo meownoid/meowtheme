@@ -3,6 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from meowtheme.base16 import Base16Palette
+from meowtheme.renderers.antinote import render_antinote
 from meowtheme.renderers.codex import render_codex
 from meowtheme.renderers.codex_desktop import render_codex_desktop
 from meowtheme.renderers.common import semantic_tokens
@@ -16,6 +17,7 @@ from meowtheme.renderers.zed import render_zed
 
 def artifact_set(palette: Base16Palette) -> dict[str, str]:
     artifacts = {
+        f"antinote/{palette.slug}.json": render_antinote(palette),
         f"codex-desktop/{palette.slug}.txt": render_codex_desktop(palette),
         f"codex/{palette.slug}.tmTheme": render_codex(palette),
         f"macos-terminal/{palette.file_stem}.terminal": render_macos_terminal(palette),
@@ -51,6 +53,7 @@ def render_all_schemes(palettes: list[Base16Palette], out_dir: Path) -> list[Pat
 
 __all__ = [
     "artifact_set",
+    "render_antinote",
     "render_all",
     "render_all_schemes",
     "render_codex",
