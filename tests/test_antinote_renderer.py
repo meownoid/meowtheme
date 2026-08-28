@@ -18,6 +18,7 @@ class AntinoteRendererTest(unittest.TestCase):
         self.assertEqual(payload["background"], "#121212")
         self.assertEqual(payload["typeMain"], "#d0d0d0")
         self.assertEqual(payload["accent1Main"], "#82aaff")
+        self.assertEqual(payload["typeHighlight"], "#ffcb6b2b")
 
     def test_renders_light_theme(self) -> None:
         payload = json.loads(render_antinote(derive_light_palette(palette())))

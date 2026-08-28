@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from meowtheme.base16 import Base16Palette
 from meowtheme.renderers.common import pretty_json, semantic_tokens
+from meowtheme.renderers.editor_colors import SELECTION_ALPHA, alpha_hex
 
 
 def render_antinote(palette: Base16Palette) -> str:
@@ -25,7 +26,7 @@ def render_antinote(palette: Base16Palette) -> str:
         "gridSuperlight": tokens["surface"],
         "isDarkTheme": palette.appearance == "dark",
         "name": palette.slug,
-        "typeHighlight": tokens["yellow"],
+        "typeHighlight": alpha_hex(tokens["yellow"], SELECTION_ALPHA),
         "typeHyperLight": tokens["surfaceRaised"],
         "typeLight": tokens["mutedForeground"],
         "typeMain": tokens["foreground"],
