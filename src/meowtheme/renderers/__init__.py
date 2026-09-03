@@ -8,6 +8,7 @@ from meowtheme.renderers.codex import render_codex
 from meowtheme.renderers.codex_desktop import render_codex_desktop
 from meowtheme.renderers.common import semantic_tokens
 from meowtheme.renderers.editor_colors import editor_colors
+from meowtheme.renderers.ghostty import render_ghostty
 from meowtheme.renderers.macos_terminal import render_macos_terminal
 from meowtheme.renderers.opencode import render_opencode
 from meowtheme.renderers.vim import render_vim
@@ -20,6 +21,7 @@ def artifact_set(palette: Base16Palette) -> dict[str, str]:
         f"antinote/{palette.slug}.json": render_antinote(palette),
         f"codex-desktop/{palette.slug}.txt": render_codex_desktop(palette),
         f"codex/{palette.slug}.tmTheme": render_codex(palette),
+        f"ghostty/{palette.slug}": render_ghostty(palette),
         f"macos-terminal/{palette.file_stem}.terminal": render_macos_terminal(palette),
         f"opencode/{palette.slug}.json": render_opencode(palette),
         f"vim/{palette.slug}.vim": render_vim(palette),
@@ -58,6 +60,7 @@ __all__ = [
     "render_all_schemes",
     "render_codex",
     "render_codex_desktop",
+    "render_ghostty",
     "render_macos_terminal",
     "render_opencode",
     "render_vim",
