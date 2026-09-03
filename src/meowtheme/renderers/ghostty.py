@@ -32,7 +32,6 @@ def render_ghostty(palette: Base16Palette) -> str:
         f"cursor-text = {tokens['background']}",
         f"selection-background = {tokens['surfaceRaised']}",
         f"selection-foreground = {tokens['foreground']}",
-        "",
     ]
     lines.extend(f"palette = {index}={color}" for index, color in palette_colors.items())
     return "\n".join(lines) + "\n"
